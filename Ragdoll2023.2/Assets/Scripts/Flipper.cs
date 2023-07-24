@@ -6,6 +6,7 @@ public class Flipper : MonoBehaviour
 {
     public KeyCode keyCode;
     public Vector3 offsetCenter;
+    public Vector3 axis;
     public float forceMultiplier;
 
     private Rigidbody _rigidbody;
@@ -34,15 +35,18 @@ public class Flipper : MonoBehaviour
     }
 
     float currentT = 0;
+    private float currentForce = 0;
     private void FixedUpdate()
     {
         int t = _isKeyPressed ? 1 : 0;
         currentT = Mathf.Lerp(currentT, t, Time.deltaTime * rotationSpeed);
 
-        _rigidbody.rotation = Quaternion.Lerp(_quatInactiveRotation, _quatActiveRotation, currentT);
+        currentForce = Mathf.Lerp(currentForce, forceMultiplier, currentT);
+
+        //_rigidbody.rotation = Quaternion.Lerp(_quatInactiveRotation, _quatActiveRotation, currentT);
 
 
-    
+        _rigidbody.AddTorque(axis * forceMultiplier, ForceMode.Impulse);
 
 }
 

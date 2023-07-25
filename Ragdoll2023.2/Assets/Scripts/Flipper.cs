@@ -14,17 +14,17 @@ public class Flipper : MonoBehaviour
 
     public float rotationSpeed = 30f;
     public float activeRotation;
-    private float _inactiveRotation;
+/*    private float _inactiveRotation;
     private Quaternion _quatActiveRotation;
-    private Quaternion _quatInactiveRotation;
+    private Quaternion _quatInactiveRotation;*/
 
     void Start()
     {
         _rigidbody = GetComponent<Rigidbody>();
         _rigidbody.centerOfMass = offsetCenter;
 
-        _quatActiveRotation = _rigidbody.rotation * Quaternion.Euler(0, activeRotation, 0);
-        _quatInactiveRotation = _rigidbody.rotation;
+/*        _quatActiveRotation = _rigidbody.rotation * Quaternion.Euler(0, activeRotation, 0);
+        _quatInactiveRotation = _rigidbody.rotation;*/
     }
 
     void Update()
@@ -51,35 +51,4 @@ public class Flipper : MonoBehaviour
 }
 
 
-
-    /*
-     * 
-             Quaternion targetRotation = Quaternion.Lerp(_quatInactiveRotation, _quatActiveRotation, currentT);
-
-        Quaternion deltaRotation = targetRotation * Quaternion.Inverse(_rigidbody.rotation);
-        deltaRotation.ToAngleAxis(out float angle, out Vector3 axis);
-        if (angle > 180)
-            angle -= 360;
-
-        Vector3 angularVelocity = axis * (angle * Mathf.Deg2Rad) / Time.fixedDeltaTime;
-
-        _rigidbody.AddTorque(angularVelocity * forceMultiplier, ForceMode.Impulse);
-    */
-    /*
-     if(!_isKeyPressed)
-        {
-            return;
-        }
-
-
-        
-
-
-
-        Vector3 axis = transform.up;
-        _rigidbody.AddTorque(axis * forceMultiplier, ForceMode.Acceleration);
-
-
-
-        _isKeyPressed = false;*/
 }
